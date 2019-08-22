@@ -17,5 +17,11 @@
       <li class="name"><%= link_to repo.name, "#{repo.html_url}" %></li>
     </ul>
     <% end %>
+    <h3>Followers</h3>
+    <% facade.user_github_followers.each do |follower| %>
+      <ul class="follower">
+        <li class="login"><%= link_to follower.login, follower.html_url %></li>
+      </ul>
+    <% end %>
   </section>
 </section>

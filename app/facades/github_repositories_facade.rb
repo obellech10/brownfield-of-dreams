@@ -10,6 +10,13 @@ class GithubRepositoriesFacade
     end
   end
 
+  def user_github_followers
+    service = GithubService.new
+    service.github_followers.map do |follower_data|
+      Follower.new(follower_data)
+    end 
+  end
+
   private
 
   attr_reader :user

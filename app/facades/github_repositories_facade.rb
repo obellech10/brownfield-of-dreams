@@ -10,12 +10,19 @@ class GithubRepositoriesFacade
     end
   end
 
+  def user_github_followers
+    @service.github_followers.map do |follower_data|
+      Follower.new(follower_data)
+    end
+  end
+
   def user_github_following
     @service.github_user_following.map do |user_data|
       Following.new(user_data)
     end
   end
 
-  private
+private
+  
   attr_reader :user
 end

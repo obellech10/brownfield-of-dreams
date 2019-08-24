@@ -12,7 +12,7 @@
   </section>
 
   <section>
-    <% if current_user %>
+    <% if current_user.github_token != nil %>
       <h1>Github</h1>
       <% facade.user_github_repos.each do |repo| %>
       <ul class="repo">
@@ -35,7 +35,7 @@
         </ul>
         <% end %>
     <% else %>
-      <%= button_to 'Connect to Github', github_login_path, method: :get %>
+    <%= button_to 'Connect to Github', github_login_path, method: :get %>
     <% end %>
   </section>
 </section>

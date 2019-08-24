@@ -11,19 +11,23 @@
     <h1>Bookmarked Segments</h1>
   </section>
   <section>
-    <h1>Github</h1>
-    <% facade.user_github_repos.each do |repo| %>
-    <ul class="repo">
-      <li class="name"><%= link_to repo.name, "#{repo.html_url}" %></li>
-    </ul>
-    <% end %>
-    <section>
-      <h2>Following</h2>
-      <% facade.user_github_following.each do |follow| %>
-      <ul class="user">
-        <li class="login"><%= link_to follow.login, "#{follow.html_url}" %></li>
+    <% if current_user %>
+      <h1>Github</h1>
+      <% facade.user_github_repos.each do |repo| %>
+      <ul class="repo">
+        <li class="name"><%= link_to repo.name, "#{repo.html_url}" %></li>
       </ul>
       <% end %>
-    </section>
+      <section>
+        <h2>Following</h2>
+        <% facade.user_github_following.each do |follow| %>
+        <ul class="user">
+          <li class="login"><%= link_to follow.login, "#{follow.html_url}" %></li>
+        </ul>
+        <% end %>
+      </section>
+    <% else %>
+      <%= button_to 'Connect to Github', github_login_path, method: :get %>
+    <% end %>
   </section>
 </section>

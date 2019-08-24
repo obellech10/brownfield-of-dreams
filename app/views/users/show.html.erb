@@ -17,11 +17,21 @@
       <li class="name"><%= link_to repo.name, "#{repo.html_url}" %></li>
     </ul>
     <% end %>
-    <h3>Followers</h3>
-    <% facade.user_github_followers.each do |follower| %>
-      <ul class="follower">
-        <li class="login"><%= link_to follower.login, follower.html_url %></li>
+    <section>
+      <h2>Followers</h2>
+      <% facade.user_github_followers.each do |follower| %>
+        <ul class="follower">
+          <li class="login"><%= link_to follower.login, follower.html_url %></li>
+        </ul>
+      <% end %>
+    </section>
+    <section>
+      <h2>Following</h2>
+      <% facade.user_github_following.each do |follow| %>
+      <ul class="user">
+        <li class="login"><%= link_to follow.login, "#{follow.html_url}" %></li>
       </ul>
-    <% end %>
+      <% end %>
+    </section>
   </section>
 </section>

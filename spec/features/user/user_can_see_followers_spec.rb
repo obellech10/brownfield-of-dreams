@@ -23,7 +23,7 @@ RSpec.describe "As a logged in user" do
         end
       end
 
-      scenario 'If the user has connected to github' do
+      scenario 'If the user has not connected to github' do
         user = create(:user)
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 

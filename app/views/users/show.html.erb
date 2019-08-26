@@ -23,7 +23,9 @@
         <h2>Followers</h2>
         <% facade.user_github_followers.each do |follower| %>
           <ul class="follower">
-            <li class="login"><%= link_to follower.login, follower.html_url %></li>
+            <li class="login"><%= link_to follower.login, follower.html_url %>
+              <% if facade.registered_user(follower.login) && !facade.already_friends?(follower.login) %>: <%= button_to 'Add Friend', friendship_index_path(github_nickname: follower.login) %></li>
+              <% end %>
           </ul>
         <% end %>
       </section>
@@ -37,5 +39,13 @@
     <% else %>
     <%= button_to 'Connect to Github', github_login_path, method: :get %>
     <% end %>
+  </section>
+  <section>
+    <h2>Friends</h2>
+      <% current_user.friends.each do |friend| %>
+      <ul class="friends">
+        <li class="github_nickname"><%= friend.github_nickname %></li>
+      </ul>
+      <% end %>
   </section>
 </section>

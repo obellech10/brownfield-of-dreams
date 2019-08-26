@@ -22,7 +22,16 @@ class GithubRepositoriesFacade
     end
   end
 
+  def registered_user(github_user)
+    return true if User.find_by(github_nickname: github_user)
+  end
+
+  def already_friends?(follower)
+    friend = User.find_by(github_nickname: follower)
+    return true if Friendship.find_by(user_id: user.id, friend_id: friend.id)
+  end
+
 private
-  
+
   attr_reader :user
 end

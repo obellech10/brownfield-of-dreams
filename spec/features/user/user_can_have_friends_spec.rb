@@ -4,8 +4,7 @@ RSpec.describe 'As a logged in user' do
   describe 'I can add see my github followers' do
     before :each do
       json_response = File.open("./fixtures/github_followers.json")
-      stub_request(:get, "https://api.github.com/user/repos")
-      .to_return(status: 200, body: json_response)
+      stub_request(:get, "https://api.github.com/user/followers").to_return(status: 200, body: json_response)
     end
 
     it 'and add them as friends if they are registered users' do

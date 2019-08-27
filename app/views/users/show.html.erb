@@ -33,11 +33,13 @@
         <h2>Following</h2>
         <% facade.user_github_following.each do |follow| %>
         <ul class="user">
-          <li class="login"><%= link_to follow.login, "#{follow.html_url}" %></li>
+          <li class="login"><%= link_to follow.login, "#{follow.html_url}" %>
+            <% if facade.registered_user(follow.login) && !facade.already_friends?(follow.login) %>: <%= button_to 'Add Friend', friendship_index_path(github_nickname: follow.login) %></li>
+            <% end %>
         </ul>
         <% end %>
     <% else %>
-    <%= button_to 'Connect to Github', github_login_path, method: :get %>
+      <%= button_to 'Connect to Github', github_login_path, method: :get %>
     <% end %>
   </section>
   <section>

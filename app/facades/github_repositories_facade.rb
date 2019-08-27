@@ -24,6 +24,7 @@ class GithubRepositoriesFacade
 
   def registered_user(github_user)
     return true if User.find_by(github_nickname: github_user)
+
   end
 
   def already_friends?(follower)

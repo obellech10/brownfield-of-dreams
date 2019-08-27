@@ -3,24 +3,24 @@ require 'rails_helper'
 RSpec.describe 'As a logged in user' do
   describe 'I can add see my github followers' do
     before :each do
-      json_response = File.open("./fixtures/github_followers.json")
-      stub_request(:get, "https://api.github.com/user/followers").to_return(status: 200, body: json_response)
+      json_response = File.open("./fixtures/github_following.json")
+      stub_request(:get, "https://api.github.com/user/following").to_return(status: 200, body: json_response)
     end
 
     it 'and add them as friends if they are registered users' do
-      user_1 = User.create!(first_name: 'Dan',
-                             last_name: 'Mariano',
+      user_1 = User.create!(first_name: 'Andrew',
+                             last_name: 'Johnson',
                               password: 'test',
                           github_token: 'test1',
-                       github_nickname: 'obellech10',
-                                 email: 'dan@example.com')
+                       github_nickname: 'Loomus',
+                                 email: 'manilda7@gmail.com')
 
-      user_2 = User.create!(first_name: 'tay',
-                             last_name: 'james',
+      user_2 = User.create!(first_name: 'Martha',
+                             last_name: 'Troubh',
                               password: 'test',
                           github_token: 'test2',
-                       github_nickname: 'tayjames',
-                                 email: 'tay@example.com')
+                       github_nickname: 'Martsy',
+                                 email: 'martha@example.com')
 
       user_3 = User.create!(first_name: 'Shiela',
                              last_name: 'Mariano',
@@ -32,9 +32,9 @@ RSpec.describe 'As a logged in user' do
       visit dashboard_path
 
       expect(page).to have_content("Github")
-      expect(page).to have_content("Follower")
+      expect(page).to have_content("Following")
 
-      within(first(".follower")) do
+      within(first(".user")) do
         expect(page).to have_button("Add Friend")
         click_button 'Add Friend'
       end
@@ -42,11 +42,11 @@ RSpec.describe 'As a logged in user' do
       user_1.reload
       visit dashboard_path
 
-      within(first(".follower")) do
+      within(first(".user")) do
         expect(page).to_not have_button("Add Friend")
       end
 
-      within(page.all(".follower")[1]) do
+      within(page.all(".user")[1]) do
         expect(page).to_not have_button("Add Friend")
       end
 

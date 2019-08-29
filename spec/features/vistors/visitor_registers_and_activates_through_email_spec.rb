@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "As a non-activated user" do
   describe "When I check my email for the registration email" do
     describe "I should see a link that says 'Visit here to activate your account.' and click" do
-      it "I should see a message 'Thank you! Your account is now activated.' and /dashboard should say 'Status: Active' " do
+      xit "I should see a message 'Thank you! Your account is now activated.' and /dashboard should say 'Status: Active' " do
         email = 'manilda7@gmail.com'
         first_name = 'Andrew'
         last_name = 'J'

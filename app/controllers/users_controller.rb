@@ -13,7 +13,6 @@ class UsersController < ApplicationController
     user = User.create(user_params)
     if user.save
       session[:user_id] = user.id
-      send_email(user)
       redirect_to dashboard_path
       flash[:message] = "Logged in as #{user.first_name}"
     else
@@ -39,9 +38,5 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:email, :first_name, :last_name, :password)
-  end
-
-  def send_email(user)
-    ActivationMailer.activation_email(user).deliver_now
   end
 end

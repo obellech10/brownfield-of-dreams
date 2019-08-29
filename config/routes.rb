@@ -47,4 +47,6 @@ Rails.application.routes.draw do
   get '/auth/github/callback', to: 'users#github_creds'
 
   resources :friendship, only: :create
+
+  resources :activation, only: :update 
 end

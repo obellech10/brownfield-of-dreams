@@ -4,10 +4,10 @@ class Admin::TutorialsController < Admin::BaseController
   end
 
   def create
-    @tutorial = Tutorial.new(tutorial_params)
-    if @tutorial.save
+    tutorial = Tutorial.new(tutorial_params)
+    if tutorial.save
       flash[:notice] = "Successfully created tutorial"
-      redirect_to tutorial_path(@tutorial.id)
+      redirect_to tutorial_path(tutorial.id)
     else
       flash[:notice] = "Missing information, review form and resubmit"
       redirect_to new_admin_tutorial_path

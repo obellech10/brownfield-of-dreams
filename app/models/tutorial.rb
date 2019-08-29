@@ -3,6 +3,10 @@ class Tutorial < ApplicationRecord
   acts_as_taggable_on :tags, :tag_list
   accepts_nested_attributes_for :videos
 
+  validates_presence_of :title,
+                        :description,
+                        :thumbnail
+
   def self.non_classroom_tutorials
     where(classroom: false)
   end

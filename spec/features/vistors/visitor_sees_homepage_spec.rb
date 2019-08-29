@@ -25,7 +25,7 @@ describe 'Visitor' do
 
     it 'can only see a list non classroom tutorials' do
       tutorial1 = create(:tutorial)
-      tutorial2 = Tutorial.create!(title: "test", description: 'test', classroom: true)
+      tutorial2 = Tutorial.create!(title: "test", description: 'test', thumbnail: "test", classroom: true)
       tutorial3 = create(:tutorial)
 
       video1 = create(:video, tutorial_id: tutorial1.id)

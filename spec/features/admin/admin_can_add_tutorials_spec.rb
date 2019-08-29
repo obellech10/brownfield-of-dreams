@@ -3,7 +3,6 @@ require 'rails_helper'
 describe 'An admin user' do
   it 'can add tutorials' do
     admin = create(:user, role: 1)
-    video = create(:video)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
     visit new_admin_tutorial_path

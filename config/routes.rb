@@ -49,4 +49,7 @@ Rails.application.routes.draw do
   resources :friendship, only: :create
 
   resources :activation, only: :update 
+
+  get '/user_videos/failed', to: 'sessions#failed_bookmark', as: :failed_bookmark
+
 end

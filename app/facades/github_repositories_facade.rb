@@ -32,6 +32,10 @@ class GithubRepositoriesFacade
     return true if Friendship.find_by(user_id: user.id, friend_id: friend.id)
   end
 
+  def bookmarked_tutorials
+    user.bookmarks
+  end
+
 private
 
   attr_reader :user

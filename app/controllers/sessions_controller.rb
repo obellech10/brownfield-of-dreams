@@ -19,4 +19,9 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
 
+  def failed_bookmark
+    flash[:error] = "User must be logged in to bookmark videos"
+    redirect_to login_path
+  end
+
 end

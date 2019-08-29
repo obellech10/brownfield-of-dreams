@@ -14,6 +14,7 @@ class UsersController < ApplicationController
     if user.save
       session[:user_id] = user.id
       redirect_to dashboard_path
+      flash[:message] = "Logged in as #{user.first_name}"
     else
       flash[:error] = 'Username already exists'
       render :new
@@ -38,5 +39,4 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:email, :first_name, :last_name, :password)
   end
-
 end
